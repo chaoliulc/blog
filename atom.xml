@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-11T12:40:45.394Z</updated>
+  <updated>2019-04-23T05:45:20.939Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>mysql更改表字段编码</title>
+    <link href="http://yoursite.com/2019/04/23/mysql%E6%9B%B4%E6%94%B9%E8%A1%A8%E5%AD%97%E6%AE%B5%E7%BC%96%E7%A0%81/"/>
+    <id>http://yoursite.com/2019/04/23/mysql更改表字段编码/</id>
+    <published>2019-04-23T05:32:05.000Z</published>
+    <updated>2019-04-23T05:45:20.939Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天向mysql数据库的表中添加emoji表情，结果发现存储时都变成问号了。看了一下数据库编码是utf8mb4,表编码也是utf8mb4,再一看表里的几个字段是utf8编码，并不是utf8mb4编码的,就在网上找了一下更改mysql表字段编码的语句，记录一下。<a id="more"></a></p><p>修改表的编码方式：</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename <span class="keyword">DEFAULT</span> <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8mb4; </span><br><span class="line"><span class="comment">-- 该命令用于将表tablename的编码方式改为utf8mb4</span></span><br></pre></td></tr></table></figure><p>修改字段的编码方式：</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename <span class="keyword">CHANGE</span> <span class="keyword">name</span> <span class="keyword">name</span> longtext <span class="built_in">CHARACTER</span> <span class="keyword">SET</span> utf8mb4 <span class="keyword">NOT</span> <span class="literal">NULL</span>; </span><br><span class="line"><span class="comment">-- 该命令将表tablename中字段name设为utf8mb4格式。</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天向mysql数据库的表中添加emoji表情，结果发现存储时都变成问号了。看了一下数据库编码是utf8mb4,表编码也是utf8mb4,再一看表里的几个字段是utf8编码，并不是utf8mb4编码的,就在网上找了一下更改mysql表字段编码的语句，记录一下。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://yoursite.com/categories/mysql/"/>
+    
+    
+      <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
     <title>使用git时LF与CRLF转换的问题</title>
     <link href="http://yoursite.com/2019/04/11/%E4%BD%BF%E7%94%A8git%E6%97%B6LF%E4%B8%8ECRLF%E8%BD%AC%E6%8D%A2%E7%9A%84%E9%97%AE%E9%A2%98/"/>
     <id>http://yoursite.com/2019/04/11/使用git时LF与CRLF转换的问题/</id>
     <published>2019-04-11T11:44:19.000Z</published>
-    <updated>2019-04-11T12:40:45.394Z</updated>
+    <updated>2019-04-11T12:45:06.397Z</updated>
     
     <content type="html"><![CDATA[<p>最近在使用git时,会报LF和CRLF转换失败的错误。因为linux下换行使用的是LF,windows使用CRLF作为换行,git默认开启LF和CRLF的转换。<a id="more"></a>将转换关掉就可以啦。</p><h3 id="git设置命令如下"><a href="#git设置命令如下" class="headerlink" title="git设置命令如下:"></a>git设置命令如下:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf false</span><br><span class="line">git config --global core.safecrlf true</span><br></pre></td></tr></table></figure><h3 id="含义："><a href="#含义：" class="headerlink" title="含义："></a>含义：</h3><h4 id="提交时转换为LF，检出时转换为CRLF"><a href="#提交时转换为LF，检出时转换为CRLF" class="headerlink" title="提交时转换为LF，检出时转换为CRLF"></a>提交时转换为LF，检出时转换为CRLF</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf true</span><br></pre></td></tr></table></figure><h4 id="提交时转换为LF，检出时不转换"><a href="#提交时转换为LF，检出时不转换" class="headerlink" title="提交时转换为LF，检出时不转换"></a>提交时转换为LF，检出时不转换</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf input</span><br></pre></td></tr></table></figure><h4 id="提交检出均不转换"><a href="#提交检出均不转换" class="headerlink" title="提交检出均不转换"></a>提交检出均不转换</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.autocrlf false</span><br></pre></td></tr></table></figure><h4 id="拒绝提交包含混合换行符的文件"><a href="#拒绝提交包含混合换行符的文件" class="headerlink" title="拒绝提交包含混合换行符的文件"></a>拒绝提交包含混合换行符的文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.safecrlf true</span><br></pre></td></tr></table></figure><h4 id="允许提交包含混合换行符的文件"><a href="#允许提交包含混合换行符的文件" class="headerlink" title="允许提交包含混合换行符的文件"></a>允许提交包含混合换行符的文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.safecrlf false</span><br></pre></td></tr></table></figure><h4 id="提交包含混合换行符的文件时给出警告"><a href="#提交包含混合换行符的文件时给出警告" class="headerlink" title="提交包含混合换行符的文件时给出警告"></a>提交包含混合换行符的文件时给出警告</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.safecrlf warn</span><br></pre></td></tr></table></figure>]]></content>
     
